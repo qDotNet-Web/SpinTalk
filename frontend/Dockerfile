@@ -1,8 +1,8 @@
-FROM node:22-alpine AS build
+FROM jarredsumner/bun:edge AS build
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package*.json bun.lockb /app/
 
 RUN bun install
 
@@ -10,12 +10,12 @@ COPY . .
 
 RUN bun run build
 
-FROM nginx:latest-alpine
+FROM jarredsumner/bun:edge
 
-COPY --from=build /app/dist /usr/share/nginx/html
+WORKDIR /app
 
-COPY defaukt.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app /app
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["bun", "run", "start"]
