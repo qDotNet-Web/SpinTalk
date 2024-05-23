@@ -18,7 +18,7 @@
                             <img src="/img/logo_spintalk.png" style="width: 60px;"/>
                         </div>
                     </div>
-                    <div class="inline-flex flex-column gap-2 mb-4" style="text-align: center;">
+                    <div class="inline-flex flex-column gap-2 mb-3" style="text-align: center;">
                         <h3 class="modal-title" id="createLobbyModalLabel">Start your Journey</h3>
                     </div>
                     <div class="inline-flex flex-column gap-2 mb-3">
