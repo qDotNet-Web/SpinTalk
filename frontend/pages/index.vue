@@ -11,8 +11,6 @@ import 'primeicons/primeicons.css'
   <div class="main-app">
     <img class="main-logo" src="/img/logo_spintalk.png"/>
     <h1>Welcome to SpinTalk</h1>
-    <LoginModal>
-
-    </LoginModal>
+    <LoginModal></LoginModal>
   </div>
 </template>
