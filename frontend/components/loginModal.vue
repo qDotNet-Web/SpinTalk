@@ -18,6 +18,9 @@
                             <img src="/img/logo_spintalk.png" style="width: 60px;"/>
                         </div>
                     </div>
+                    <div class="inline-flex flex-column gap-2 mb-4" style="text-align: center;">
+                        <h3 class="modal-title" id="createLobbyModalLabel">Start your Journey</h3>
+                    </div>
                     <div class="inline-flex flex-column gap-2 mb-3">
                         <FloatLabel class="ip_float">
                             <InputText id="ip_username" name="ip_userName" v-model="ip_userName"
@@ -32,6 +35,9 @@
                             <label for="ip_mail">E-Mail</label>
                         </FloatLabel>
                     </div>
+                    <div class="flex-terms flex-column gap-2 mb-3">
+                        <p class="p-terms">Acc. Terms & Cond.</p><InputSwitch v-model="checkedTerms"/>
+                    </div>
                     <div class="flex-modal align-items-center gap-3">
                         <Button label="Cancel" @click="closeCallback" text class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10" outlined></Button>
                         <Button label="Start" @click="closeCallback" text class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10" outlined></Button>
@@ -44,4 +50,5 @@
 const login_visible = ref(false)
 const ip_userName = ref(null);
 const ip_mail = ref(null);
+const checkedTerms = ref(false);
 </script>

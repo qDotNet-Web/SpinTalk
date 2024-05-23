@@ -53,7 +53,7 @@
 }
 
 .mb-pi{
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .p-inputtext:enabled:focus{
@@ -63,4 +63,12 @@
 .p-float-label:has(input:focus) label {
     top: -0.7rem !important;
     color: var(--primary-color) !important;
+}
+
+.flex-terms{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
 }
