@@ -1,5 +1,7 @@
 :root{
     --primary-color: #08c477;
+    --main-text-color: rgb(218, 216, 216);
+    --main-modal-bg: #18181b;
 }
 
 .main-app{

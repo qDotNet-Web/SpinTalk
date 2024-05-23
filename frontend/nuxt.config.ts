@@ -1,8 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['nuxt-primevue'],
+  modules: ['nuxt-primevue', 'usebootstrap'],
+
   primevue: {
+    cssLayerOrder: 'bootstrap, primevue',
     usePrimeVue: true,
     options: {
       unstyled: false
@@ -11,5 +13,9 @@ export default defineNuxtConfig({
       include: '*',
     },
   },
-  css: ['primevue/resources/themes/aura-dark-green/theme.css']
+  css: ['primevue/resources/themes/aura-dark-green/theme.css',
+  ],
+  vue: {
+    propsDestructure: true
+  }
 })
