@@ -52,6 +52,7 @@ const items = ref([
     {
         label: 'Chat',
         icon: 'pi pi-comments',
+        badge: 5
     },
     {
         label: 'About',

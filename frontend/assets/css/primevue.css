@@ -71,7 +71,7 @@
 }
 
 .p-float-label:has(input:focus) label {
-    top: -0.7rem !important;
+    top: -0.6rem !important;
     color: var(--primary-color) !important;
 }
 
