@@ -10,4 +10,5 @@
 <script>
 import 'primevue/resources/themes/aura-dark-green/theme.css'
 import '~/assets/css/primevue.css'
+import '~/assets/css/style.css'
 </script>

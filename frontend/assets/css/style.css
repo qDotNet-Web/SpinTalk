@@ -1,0 +1,17 @@
+:root{
+    --primary-color: #08c477;
+}
+
+.main-app{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-logo{
+    padding-top: 3rem;
+    width: 250px;
+}
+

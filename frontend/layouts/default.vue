@@ -3,8 +3,8 @@
         <AppHeader />
         <Menubar :model="items">
             <template #start>
-                <div class="flex align-items-center gap-2">
-                    <img src="/img/logo_trans.png" style="width: 44px;"/>
+                <div class="flex align-items-center gap-2" style="display: flex; padding-right: .2rem;">
+                    <img src="/img/logo_spintalk.png" style="width: 40px;"/>
                 </div>
             </template>
             <template #item="{ item, props, hasSubmenu, root }">
@@ -20,7 +20,7 @@
                 </a>
             </template>
             <template #end>
-                <div class="flex align-items-center gap-2" style="display: flex;">
+                <div class="flex align-items-center gap-2" style="display: flex; gap: 0.4rem">
                     <InputText placeholder="Search" type="text" class="w-8rem sm:w-auto" />
                     <Avatar image="/img/testavatar.png" shape="circle" />
                 </div>
