@@ -25,6 +25,14 @@
     margin-bottom: 1.8rem !important;
 }
 
+.mb-1 {
+    margin-bottom: 0.5rem !important;
+}
+
+.mb-2 {
+    margin-bottom: 1rem !important;
+}
+
 .gap-2 {
     gap: .5rem !important;
     row-gap: 0.5rem !important;

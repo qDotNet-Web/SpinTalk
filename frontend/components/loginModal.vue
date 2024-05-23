@@ -28,14 +28,14 @@
                             <label for="ip_userName">Username</label>
                         </FloatLabel>
                     </div>
-                    <div class="inline-flex flex-column gap-2 mb-3">
+                    <div class="inline-flex flex-column gap-2 mb-1">
                         <FloatLabel class="ip_float">
                             <InputText id="ip_mail" name="ip_mail" v-model="ip_mail"
                                 class="w-full ip_float bg-white-alpha-20" maxlength="20" />
                             <label for="ip_mail">E-Mail</label>
                         </FloatLabel>
                     </div>
-                    <div class="flex-terms flex-column gap-2 mb-3">
+                    <div class="flex-terms flex-column gap-2 mb-2">
                         <p class="p-terms">Acc. Terms & Cond.</p><InputSwitch v-model="checkedTerms"/>
                     </div>
                     <div class="flex-modal align-items-center gap-3">
