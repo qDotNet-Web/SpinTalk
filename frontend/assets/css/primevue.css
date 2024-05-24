@@ -97,8 +97,10 @@
 
 .video-box{
     width: 49%;
-    height: 350px;
+    min-height: 350px;
     background-color: var(--primary-color);
     border-radius: 12px;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }

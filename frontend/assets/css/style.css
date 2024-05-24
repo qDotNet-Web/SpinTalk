@@ -28,7 +28,7 @@
 }
 
 .iconBox {
-    padding-top: 3rem;
+    padding-top: 1rem;
 }
 
 .is-size-100{
@@ -37,6 +37,11 @@
 
 .is-primary-color{
     color: var(--primary-color);
+}
+
+.video-chatBox {
+    border-radius: 12px;
+    border: 1px solid var(--primary-color);
 }
 
 /*Nuxt Transitions*/

@@ -5,8 +5,8 @@
     <h1>Random Video-Chat</h1>
     <div class="flex-row mb-3">
         <div id="el" class="video-box">
-  
-            <video v-if="!imageData.image" ref="video" />
+            <video v-if="!imageData.image" ref="video" class="video-chatBox" />
+            <speedDialVideo></speedDialVideo>
         </div>
         <div class="video-box">
             <div class="iconBox" style="display: inline-flex; padding-top: 7rem;">
