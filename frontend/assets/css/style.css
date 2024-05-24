@@ -26,3 +26,27 @@
     font-weight: 400;
     
 }
+
+.iconBox {
+    padding-top: 3rem;
+}
+
+.is-size-100{
+    font-size: 6rem;
+}
+
+.is-primary-color{
+    color: var(--primary-color);
+}
+
+/*Nuxt Transitions*/
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.1s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}

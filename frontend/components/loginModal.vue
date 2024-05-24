@@ -12,7 +12,7 @@
             }"
         >
             <template #container="{ closeCallback }">
-                <div class="flex-column px-5 py-5 gap-4" style="border-radius: 12px; background-color: var(--main-modal-bg); width: 320px;">
+                <div v-focustrap class="flex-column px-5 py-5 gap-4" style="border-radius: 12px; background-color: var(--main-modal-bg); width: 320px;">
                     <div class="gap-2 mb-pi" style="justify-content: center; display: flex;">
                         <div class="iconBox" style="display: inline-flex;">
                             <img src="/img/logo_spintalk.png" style="width: 60px;"/>
@@ -23,14 +23,14 @@
                     </div>
                     <div class="inline-flex flex-column gap-2 mb-3">
                         <FloatLabel class="ip_float">
-                            <InputText id="ip_username" name="ip_userName" v-model="ip_userName"
-                                class="w-full ip_float bg-white-alpha-20" maxlength="35" />
+                            <InputText v-tooltip.top="'Enter your username'" id="ip_username" name="ip_userName" v-model="ip_userName"
+                                class="w-full ip_float bg-white-alpha-20" maxlength="35" autofocus/>
                             <label for="ip_userName">Username</label>
                         </FloatLabel>
                     </div>
                     <div class="inline-flex flex-column gap-2 mb-1">
                         <FloatLabel class="ip_float">
-                            <InputText id="ip_mail" name="ip_mail" v-model="ip_mail"
+                            <InputText v-tooltip.top="'Enter your mail'" id="ip_mail" name="ip_mail" v-model="ip_mail"
                                 class="w-full ip_float bg-white-alpha-20" maxlength="35" />
                             <label for="ip_mail">E-Mail</label>
                         </FloatLabel>

@@ -48,6 +48,9 @@ const items = ref([
     {
         label: 'Video',
         icon: 'pi pi-video',
+        command: () => {
+            router.push('/videochat')
+        }
     },
     {
         label: 'Chat',
