@@ -10,6 +10,8 @@
     align-content: center;
     justify-content: center;
     align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .main-logo{
@@ -28,11 +30,15 @@
 }
 
 .iconBox {
-    padding-top: 1rem;
+    padding-top: 2rem;
 }
 
 .is-size-100{
-    font-size: 6rem;
+    font-size: 4rem;
+}
+
+.is-size-50{
+    font-size: 2rem;
 }
 
 .is-primary-color{
@@ -42,6 +48,7 @@
 .video-chatBox {
     border-radius: 12px;
     border: 1px solid var(--primary-color);
+    width: 100%;
 }
 
 /*Nuxt Transitions*/

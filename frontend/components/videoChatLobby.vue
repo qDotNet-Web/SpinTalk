@@ -1,8 +1,7 @@
 <template>
-    <div class="iconBox" style="display: inline-flex;">
+    <div class="iconBox mb-3" style="display: inline-flex;">
         <i class="pi pi-video text-5xl is-size-100 is-primary-color"></i>
     </div>
-    <h1>Random Video-Chat</h1>
     <div class="flex-row mb-3">
         <div id="el" class="video-box">
             <video v-if="!imageData.image" ref="video" class="video-chatBox" />
