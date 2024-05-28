@@ -13,7 +13,10 @@
             </div>
         </div>
     </div>
-    <div class="flex-row">
+    <div class="flex-row flex-start gap-1 mb-3">
+        <Button label="Next" icon="pi pi-arrow-up-right" outlined />
+        <Button label="Random" severity="warning" icon="pi pi-refresh" outlined />
+        <Button label="Filter" icon="pi pi-star" severity="help" outlined />
     </div>
 </template>
 <script>

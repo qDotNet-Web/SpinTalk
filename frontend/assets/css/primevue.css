@@ -124,3 +124,7 @@
 .p-card .p-card-body {
     padding: 0 !important;
 }
+
+.p-card{
+    border: solid 1px #3f3f46;
+}
