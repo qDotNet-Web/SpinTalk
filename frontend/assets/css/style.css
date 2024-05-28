@@ -2,6 +2,8 @@
     --primary-color: #08c477;
     --main-text-color: rgb(218, 216, 216);
     --main-modal-bg: #18181b;
+    --main-bg-color: #121212;
+    --admin-color: red;
 }
 
 .main-app{
@@ -28,15 +30,25 @@
 }
 
 .iconBox {
-    padding-top: 3rem;
+    padding-top: 2rem;
 }
 
 .is-size-100{
-    font-size: 6rem;
+    font-size: 4rem;
+}
+
+.is-size-50{
+    font-size: 2rem;
 }
 
 .is-primary-color{
     color: var(--primary-color);
+}
+
+.video-chatBox {
+    border-radius: 12px;
+    border: 1px solid var(--primary-color);
+    width: 100%;
 }
 
 /*Nuxt Transitions*/
@@ -49,4 +61,54 @@
 .page-leave-to {
   opacity: 0;
   filter: blur(1rem);
+}
+
+.gap-1{
+    gap: 1rem !important;
+}
+
+.flex-start {
+    justify-content: flex-start !important;
+}
+
+.overflow-y-auto {
+    overflow-y: auto;
+}
+
+.w-full {
+    width: 100% !important;
+}
+
+.main-bg-color {
+    background-color: var(--main-bg-color);
+    min-height: 50px;
+    border-radius: 12px;
+}
+
+.justify-end{
+    justify-content: flex-end !important;
+}
+
+.justify-start{
+    justify-content: flex-start !important;
+}
+
+.justify-center{
+    justify-content: center !important;
+}
+
+.rounded{
+    border-radius: 12px;
+}
+
+.bg-chat-sender{
+    background-color: var(--primary-color);
+}
+
+.bg-chat-receiver{
+    background-color: var(--main-modal-bg);
+}
+
+.bg-chat-admin{
+    background-color: var(--admin-color);
 }

@@ -1,12 +1,12 @@
 <template>
-    <div class="iconBox" style="display: inline-flex;">
-        <i class="pi pi-video text-5xl is-size-100 is-primary-color"></i>
+    <div class="iconBox mb-3 flex-row justify-start" style="display: inline-flex;">
+        <i class="pi pi-video text-5xl is-size-50 is-primary-color"></i>
+        <h3 style="margin: 0">Video</h3>
     </div>
-    <h1>Random Video-Chat</h1>
     <div class="flex-row mb-3">
         <div id="el" class="video-box">
-  
-            <video v-if="!imageData.image" ref="video" />
+            <video v-if="!imageData.image" ref="video" class="video-chatBox" />
+            <speedDialVideo></speedDialVideo>
         </div>
         <div class="video-box">
             <div class="iconBox" style="display: inline-flex; padding-top: 7rem;">
@@ -14,7 +14,10 @@
             </div>
         </div>
     </div>
-    <div class="flex-row">
+    <div class="flex-row flex-start gap-1 mb-3">
+        <Button label="Next" icon="pi pi-arrow-up-right" outlined />
+        <Button label="Random" severity="warning" icon="pi pi-refresh" outlined />
+        <Button label="Filter" icon="pi pi-star" severity="help" outlined />
     </div>
 </template>
 <script>
