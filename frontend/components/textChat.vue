@@ -1,8 +1,9 @@
 <template>
     <Card style="width: 100%" class="mb-3">
         <template #content>
-            <div class="iconBox mb-3" style="display: inline-flex;">
+            <div class="iconBox mb-3 flex-row justify-start" style="display: inline-flex;">
                 <i class="pi pi-comments text-5xl is-size-50 is-primary-color"></i>
+                <h3 style="margin: 0">Text</h3>
             </div>
             <div class="flex-row overflow-y-auto mb-2" style="display: inline-flex">
                 <div class="flex-row main-bg-color">
@@ -61,6 +62,12 @@ const chats = ref<Chat[]>([
         room: 'room1',
         text: 'I am good, thanks!',
         time: '10:45 PM',
+    },
+    {
+        username: 'Admin',
+        room: 'room1',
+        text: 'Welcome to our chat!',
+        time: '10:46 PM',
     }
 ]);
 const users = ref<User[]>([

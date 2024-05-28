@@ -1,6 +1,7 @@
 <template>
-    <div class="iconBox mb-3" style="display: inline-flex;">
-        <i class="pi pi-video text-5xl is-size-100 is-primary-color"></i>
+    <div class="iconBox mb-3 flex-row justify-start" style="display: inline-flex;">
+        <i class="pi pi-video text-5xl is-size-50 is-primary-color"></i>
+        <h3 style="margin: 0">Video</h3>
     </div>
     <div class="flex-row mb-3">
         <div id="el" class="video-box">
