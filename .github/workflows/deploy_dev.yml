@@ -41,8 +41,8 @@ jobs:
             
             # Ensure the SSH key for GitHub is set up
             mkdir -p ~/.ssh
-            echo "${{ secrets.GH_DEPLOY_KEY }}" | tr -d '\r' > ~/.ssh/actions_ssh
-            chmod 600 ~/.ssh/actions_ssh
+            # echo "${{ secrets.GH_DEPLOY_KEY }}" | tr -d '\r' > ~/.ssh/actions_ssh
+            # chmod 600 ~/.ssh/actions_ssh
             ssh-keyscan github.com >> ~/.ssh/known_hosts
 
             # Clone or pull the latest repository
