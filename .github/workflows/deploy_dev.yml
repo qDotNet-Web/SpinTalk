@@ -30,10 +30,12 @@ jobs:
 
       - name: Deploy to Test Server
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@45.138.48.208 << 'EOF'
+          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@45.138.48.208 << 'EOF'
             set -e
             if [ ! -d "/home/spintalk/.git" ]; then
-              rm -rf /home/spintalk # Entferne fehlerhafte Verzeichnisse
+              echo "Cleaning up the directory..."
+              rm -rf /home/spintalk
+              echo "Cloning the repository..."
               git clone git@github.com:qDotNet-Web/SpinTalk.git /home/spintalk
             fi
             cd /home/spintalk &&
