@@ -29,10 +29,14 @@ RUN bun run build
 # copy production dependencies and source code into final image
 FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=prerelease /usr/src/app/index.ts .
 COPY --from=prerelease /usr/src/app/package.json .
-
+COPY --from=prerelease /usr/src/app /usr/src/app
 # run the app
-USER bun
-EXPOSE 80/tcp
-ENTRYPOINT [ "bun", "run", "dev" ]
+
+EXPOSE 3000/tcp
+
+ENV NUXT_HOST=0.0.0.0
+
+
+
+ENTRYPOINT [ "bun", "run", "dev", "--host" ]
