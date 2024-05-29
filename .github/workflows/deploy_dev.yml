@@ -51,5 +51,6 @@ jobs:
             git config --global core.sshCommand "ssh -i ~/.ssh/actions_ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&
             git config pull.rebase false &&
             git pull origin dev &&
+            docker-compose push && 
             docker stack deploy -c docker-compose.yml spintalk_stack
           EOF
