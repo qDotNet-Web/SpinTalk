@@ -30,8 +30,10 @@ jobs:
 
       - name: Deploy to Test Server
         run: |
-          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@45.138.48.208 << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@45.138.48.208 << 'EOF'
             set -e
+            mkdir -p ~/.ssh
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
             if [ ! -d "/home/spintalk/.git" ]; then
               echo "Cleaning up the directory..."
               rm -rf /home/spintalk
