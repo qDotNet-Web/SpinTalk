@@ -1,7 +1,6 @@
 services:
   backend:
-    build:
-      context: ./backend
+    image: 127.0.0.1:5000/spintalk_backend:latest
     restart: unless-stopped
     expose:
       - "8000"
@@ -33,8 +32,7 @@ services:
         - spintalk_overlay
 
   frontend:
-    build:
-      context: ./frontend
+    image: 127.0.0.1:5000/spintalk_frontend:latest
     restart: unless-stopped
     depends_on:
       - backend
