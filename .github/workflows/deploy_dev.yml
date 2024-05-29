@@ -24,9 +24,14 @@ jobs:
 
       - name: Setup SSH for GitHub
         run: |
+          mkdir -p ~/.ssh/
           echo "${{ secrets.GH_DEPLOY_KEY }}" > ~/.ssh/actions_ssh
           chmod 600 ~/.ssh/actions_ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Verify SSH Key
+        run: |
+          cat ~/.ssh/actions_ssh
 
       - name: Deploy to Test Server
         run: |
