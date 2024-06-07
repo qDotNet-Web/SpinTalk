@@ -1,6 +1,7 @@
 from fastapi import Request
 from .exceptions import *
 
+
 async def request_handler(request: Request, call_next):
     try:
         return await call_next(request)
