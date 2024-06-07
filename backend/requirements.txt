@@ -1,0 +1,10 @@
+backend==0.2.4.1
+beanie==1.26.0
+fastapi==0.111.0
+fastapi_users==13.0.0
+fastapi_users_db_beanie==3.0.0
+motor==3.4.0
+passlib==1.7.4
+pydantic==2.7.3
+python_jose==3.3.0
+starlette==0.37.2

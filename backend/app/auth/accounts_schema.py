@@ -1,11 +1,9 @@
-from pydantic import BaseModel
+from fastapi_users.schemas import BaseUser, BaseUserCreate, BaseUserUpdate
 from typing import Optional
 
 
-class UserInDB(BaseModel):
-    username: str
-    email: str
-    hashed_password: str
+class UserRead(BaseUser):
+    username: str = None
     disabled: Optional[bool] = None
     role: Optional[str] = None
     banned: Optional[bool] = None
@@ -17,10 +15,8 @@ class UserInDB(BaseModel):
     last_ip: Optional[str] = None
 
 
-class User(BaseModel):
+class UserUpdate(BaseUserUpdate):
     username: str
-    email: str
-    password: str
     disabled: Optional[bool] = None
     role: Optional[str] = None
     banned: Optional[bool] = None
@@ -35,12 +31,6 @@ class User(BaseModel):
         orm_mode = True
 
 
-class UserCreate(BaseModel):
+class UserCreate(BaseUserCreate):
     username: str
-    email: str
-    password: str
-
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
+    role: str = None
