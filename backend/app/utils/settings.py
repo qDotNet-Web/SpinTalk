@@ -8,6 +8,7 @@ class Settings:
     MONGODB_DB_ACCOUNTS: str = "accounts_db"
     MONGODB_DB_REPORTS: str = "reports_db"
     MONGODB_DB_CHATS: str = "chats_db"
+    MONGODB_DB_BANS: str = "bans_db"
     SECRET_KEY: str = os.getenv("SECRET_KEY")
 
     ALGORITHM = "HS256"

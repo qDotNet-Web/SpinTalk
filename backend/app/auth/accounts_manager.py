@@ -12,7 +12,7 @@ from fastapi_users.db import BeanieUserDatabase, ObjectIDIDMixin
 
 
 from .accounts_db import User, get_user_db
-from ..core.settings import settings
+from backend.app.utils.settings import settings
 
 
 SECRET = settings.SECRET_KEY

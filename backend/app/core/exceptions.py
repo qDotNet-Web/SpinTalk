@@ -2,7 +2,7 @@ from typing import Type
 from fastapi.responses import JSONResponse
 from fastapi import status as statuscode
 
-from ..models.errors import *
+from backend.app.core.errors import *
 
 
 class BaseAPIException(Exception):

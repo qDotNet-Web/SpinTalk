@@ -3,9 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from contextlib import asynccontextmanager
 from beanie import init_beanie
-from .auth.accounts_db import User, db
+from .auth.accounts_db import User, accounts_db
 from .auth.accounts_schema import UserCreate, UserUpdate, UserRead
 from .auth.accounts_manager import fastapi_users, auth_backend, current_active_user
+
+from .core.database import db_manager
 
 
 @asynccontextmanager
@@ -18,7 +20,7 @@ async def lifespan(app: FastAPI):
     )
     yield
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 origins = [
     "https://spintalk.net"
@@ -56,5 +58,15 @@ app.include_router(
     prefix="/users",
     tags=["users"],
 )
+
+
+@app.on_event("startup")
+async def startup_event():
+    await db_manager.initialize()
+
+
+@app.on_event("shutdown")
+def shutdown_event():
+    db_manager.close()
 
 

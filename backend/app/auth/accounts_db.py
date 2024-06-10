@@ -3,7 +3,7 @@ from beanie import Document
 from fastapi_users.db import BeanieBaseUser
 from fastapi_users_db_beanie import BeanieUserDatabase
 
-from ..core.settings import settings
+from backend.app.utils.settings import settings
 
 
 client = motor.motor_asyncio.AsyncIOMotorClient(
@@ -11,7 +11,7 @@ client = motor.motor_asyncio.AsyncIOMotorClient(
     uuidRepresentation="standard"
 )
 
-db = client[settings.MONGODB_DB_ACCOUNTS]
+accounts_db = client[settings.MONGODB_DB_ACCOUNTS]
 
 
 class User(BeanieBaseUser, Document):

@@ -1,5 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from .settings import settings
+from backend.app.utils.settings import settings
 
 
 class Database:
@@ -27,6 +27,10 @@ class Database:
         if "chats" not in await cls.chats_db.list_collection_names():
             await cls.chats_db.create_collection("chats")
 
+        cls.bans_db = cls.client[settings.MONGODB_DB_BANS]
+        if "bans" not in await cls.bans_db.list_collection_names():
+            await cls.bans_db.create_collection("bans")
+
     @classmethod
     def close(cls):
         cls.client.close()
@@ -37,7 +41,7 @@ class Database:
         :param collection_name:
         :param field:
         :param value:
-        :return:
+        :return: bool
         """
         if cls.accounts_db is None:
             raise ValueError("Database Accounts not initialized")
@@ -52,7 +56,7 @@ class Database:
         :param collection_name:
         :param field:
         :param value:
-        :return:
+        :return: bool
         """
         if cls.chats_db is None:
             raise ValueError("Database Chats not initialized")
@@ -62,5 +66,5 @@ class Database:
         return document is not None
 
 
-db = Database()
+db_manager = Database()
 
