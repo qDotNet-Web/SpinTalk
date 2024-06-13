@@ -3,7 +3,7 @@ from beanie import Document
 from fastapi_users.db import BeanieBaseUser
 from fastapi_users_db_beanie import BeanieUserDatabase
 
-from backend.app.utils.settings import settings
+from ..utils.settings import settings
 
 
 client = motor.motor_asyncio.AsyncIOMotorClient(

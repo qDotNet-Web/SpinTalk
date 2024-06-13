@@ -1,15 +1,16 @@
 from fastapi_users.schemas import BaseUser, BaseUserCreate, BaseUserUpdate
 from typing import Optional
+from beanie import PydanticObjectId
 
 
-class UserRead(BaseUser):
+class UserRead(BaseUser[PydanticObjectId]):
     username: str = None
-    disabled: Optional[bool] = None
+    status: Optional[bool] = None
     role: Optional[str] = None
-    banned: Optional[bool] = None
+    created_at: Optional[str] = None
     banned_until: Optional[str] = None
     banned_reason: Optional[str] = None
-    created_at: Optional[str] = None
+    banned_from: Optional[str] = None
     last_updated: Optional[str] = None
     last_login: Optional[str] = None
     last_ip: Optional[str] = None
@@ -17,18 +18,18 @@ class UserRead(BaseUser):
 
 class UserUpdate(BaseUserUpdate):
     username: str
-    disabled: Optional[bool] = None
+    status: Optional[bool] = None
     role: Optional[str] = None
-    banned: Optional[bool] = None
+    created_at: Optional[str] = None
     banned_until: Optional[str] = None
     banned_reason: Optional[str] = None
-    created_at: Optional[str] = None
+    banned_from: Optional[str] = None
     last_updated: Optional[str] = None
     last_login: Optional[str] = None
     last_ip: Optional[str] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class UserCreate(BaseUserCreate):

@@ -9,10 +9,8 @@ from fastapi_users.authentication import (
     JWTStrategy,
 )
 from fastapi_users.db import BeanieUserDatabase, ObjectIDIDMixin
-
-
 from .accounts_db import User, get_user_db
-from backend.app.utils.settings import settings
+from ..utils.settings import settings
 
 
 SECRET = settings.SECRET_KEY
@@ -36,7 +34,7 @@ class UserManager(ObjectIDIDMixin, BaseUserManager[User, PydanticObjectId]):
         print(f"Verification requested for user {user.id}. Verification token: {token}")
 
 
-async def get_user_manager(user_db: BeanieUserDatabase = Depends(get_user_db())):
+async def get_user_manager(user_db: BeanieUserDatabase = Depends(get_user_db)):
     yield UserManager(user_db)
 
 
@@ -50,7 +48,7 @@ def get_jwt_strategy() -> JWTStrategy:
 auth_backend = AuthenticationBackend(
     name="jwt",
     transport=bearer_transport,
-    get_strategy=get_jwt_strategy()
+    get_strategy=get_jwt_strategy,
 )
 
 fastapi_users = FastAPIUsers[User, PydanticObjectId](get_user_manager, [auth_backend])

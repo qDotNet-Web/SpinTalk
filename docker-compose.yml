@@ -46,6 +46,7 @@ services:
         #- "traefik.http.services.st_frontend.loadbalancer.server.port=80"
     #networks:
       #- spintalk_overlay
+      #- spintalk
 
 volumes:
   spintalk_database:

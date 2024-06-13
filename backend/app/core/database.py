@@ -1,5 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from backend.app.utils.settings import settings
+from ..utils.settings import settings
 
 
 class Database:
@@ -11,25 +11,30 @@ class Database:
     @classmethod
     async def initialize(cls):
         """
-        Initialisiert die Verbindung zur MongoDB-Datenbank.
+        Initialisiert die Verbindung zur MongoDB-Datenbank und erstellt die benötigten Sammlungen,
+        falls sie nicht existieren.
         """
         cls.client = AsyncIOMotorClient(settings.MONGODB_URL)
 
         cls.accounts_db = cls.client[settings.MONGODB_DB_ACCOUNTS]
         if "accounts" not in await cls.accounts_db.list_collection_names():
             await cls.accounts_db.create_collection("accounts")
+            print("Created accounts collection")
 
         cls.reports_db = cls.client[settings.MONGODB_DB_REPORTS]
-        if "reports" not in await cls.reports_db.list_collection_names():
+        if "reports" not in await cls.client.list_collection_names():
             await cls.reports_db.create_collection("reports")
+            print("Created reports collection")
 
         cls.chats_db = cls.client[settings.MONGODB_DB_CHATS]
         if "chats" not in await cls.chats_db.list_collection_names():
             await cls.chats_db.create_collection("chats")
+            print("Created chats collection")
 
         cls.bans_db = cls.client[settings.MONGODB_DB_BANS]
         if "bans" not in await cls.bans_db.list_collection_names():
             await cls.bans_db.create_collection("bans")
+            print("Created bans collection")
 
     @classmethod
     def close(cls):

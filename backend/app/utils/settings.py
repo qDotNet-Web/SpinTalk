@@ -1,5 +1,5 @@
 from fastapi.security import OAuth2PasswordBearer
-from passlib.context import CryptContext
+from fastapi_users.authentication import JWTStrategy
 import os
 
 
@@ -13,6 +13,9 @@ class Settings:
 
     ALGORITHM = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+    def get_jwt_strategy(self) -> JWTStrategy:
+        return JWTStrategy(secret=self.SECRET_KEY, lifetime_seconds=3600)
 
 
 settings = Settings()
