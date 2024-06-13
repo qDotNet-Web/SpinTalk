@@ -5,7 +5,7 @@
                 <i class="pi pi-comments text-5xl is-size-50 is-primary-color"></i>
                 <h3 style="margin: 0">Text</h3>
             </div>
-            <div class="flex-row overflow-y-auto mb-2" style="display: inline-flex">
+            <div class="flex-row overflow-y-auto" style="display: inline-flex">
                 <div class="flex-row main-bg-color">
                     <div class="w-full" v-for="(chat, i) in chats" :key="i" :class="{
                         'justify-center': chat.username === 'Admin',
