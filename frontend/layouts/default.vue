@@ -22,7 +22,7 @@
             <template #end>
                 <div class="flex align-items-center gap-2" style="display: flex; gap: 0.4rem">
                     <InputText placeholder="Search" type="text" class="w-8rem sm:w-auto" />
-                    <Avatar image="/img/testavatar.png" shape="circle" />
+                    <Avatar image='/img/testavatar.png' shape="circle" @click="" />
                 </div>
             </template>
         </Menubar>
@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-const router = useRouter()
+const router = useRouter();
 const items = ref([
     {
         label: 'Home',
@@ -63,7 +63,7 @@ const items = ref([
         command: () => {
             router.push('/about');
         }
-    }
+    },
 ]);
 
 </script>

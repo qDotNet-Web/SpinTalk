@@ -10,14 +10,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "chart.js": "^4.4.3",
     "nuxt": "^3.11.2",
     "primeicons": "^7.0.0",
     "primevue": "^3.52.0",
     "vue": "^3.4.27",
+    "vue-i18n": "^10.0.0-beta.1",
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
-    "nuxt-primevue": "^0.3.1",
+    "nuxt-primevue": "^3.0.0",
     "usebootstrap": "^3.5.7"
   }
 }

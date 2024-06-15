@@ -6,7 +6,6 @@
             </template>
         </Card>
 
-                <textChat></textChat>
-
+        <textChat></textChat>
     </div>
 </template>

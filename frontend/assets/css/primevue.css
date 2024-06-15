@@ -128,3 +128,27 @@
 .p-card{
     border: solid 1px #3f3f46;
 }
+
+.h-30rem{
+    height: 30rem;
+}
+
+.h-40rem{
+    height: 40rem;
+}
+
+.w-80rem{
+    width: 80rem;
+}
+
+.w-50rem{
+    width: 50rem;
+}
+
+.w-50p{
+    width: 50%;
+}
+
+.w-40p{
+    width: 40%;
+}
