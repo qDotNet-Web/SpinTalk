@@ -2,6 +2,7 @@
   <div>
   </div>
   <Toast />
+  <ConfirmPopup />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

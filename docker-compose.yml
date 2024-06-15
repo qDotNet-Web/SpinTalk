@@ -1,5 +1,6 @@
 services:
   backend:
+    # image: 127.0.0.1:5000/spintalk_backend:latest
     build: ./backend
     restart: unless-stopped
     expose:
@@ -14,7 +15,7 @@ services:
         - "traefik.http.services.st_backend.loadbalancer.server.port=8000"
     environment:
         - MONGODB_URL=mongodb://admin:password@mongo:27017/ddf_db?authSource=admin
-        - SECRET_KEY=secret_key#
+        - SECRET_KEY=secret_key
     networks:
       - spintalk
 
@@ -24,12 +25,13 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongo_data:/data/db
+      - spintalk_database:/data/db
     environment:
         - MONGO_INITDB_ROOT_USERNAME=admin
         - MONGO_INITDB_ROOT_PASSWORD=password
     networks:
         - spintalk
+
 
   frontend:
     build: ./frontend
@@ -48,8 +50,11 @@ services:
       - spintalk
 
 volumes:
-  mongo_data:
+  spintalk_database:
+    #external: true
 
 networks:
+    spintalk_overlay:
+        driver: overlay
     spintalk:
         driver: bridge

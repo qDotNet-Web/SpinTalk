@@ -47,21 +47,6 @@ class Database:
         return document is not None
 
     @classmethod
-    async def reports_exists(cls, collection_name: str, field: str, value) -> bool:
-        """
-        :param collection_name:
-        :param field:
-        :param value:
-        :return:
-        """
-        if cls.reports_db is None:
-            raise ValueError("Database Reports not initialized")
-
-        reports_collection = cls.reports_db[collection_name]
-        document = await reports_collection.find_one({field: value})
-        return document is not None
-
-    @classmethod
     async def chats_exists(cls, collection_name: str, field: str, value) -> bool:
         """
         :param collection_name:

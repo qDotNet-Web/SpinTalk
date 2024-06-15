@@ -112,3 +112,80 @@
 .bg-chat-admin{
     background-color: var(--admin-color);
 }
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.space-bewteen {
+    display: flex; justify-content: space-between;
+}
+
+.center-vertical {
+    display: flex;
+    align-items: center;
+}
+
+.chart-container {
+    width: 100%;
+    display: flex;  
+    justify-content: space-between;
+}
+
+
+.flex-break {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.custom-link {
+    display: block;
+    color: white;
+    text-decoration: none !important;
+}
+
+.custom-link:hover {
+    color: white;
+    text-decoration: underline !important;
+}
+
+.report-preview {
+    width: 20rem;
+    height: auto;
+}
+
+.chatMessages {
+    border: 0.2rem solid white;
+    padding: 0.2rem;
+}
+
+.message_a {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    background-color: #08c477;
+}
+
+.message_b {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    background-color: #0853c4;
+}

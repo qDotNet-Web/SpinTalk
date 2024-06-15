@@ -73,12 +73,12 @@ export default {
             let userName = ip_userName.value;
             let mail = ip_mail.value;
             if (!userName || userName.value < 1){
-                toast.add({ severity: 'error', summary: 'No username provided', detail: 'Please provde a username', life: 3000 })
+                toast.add({ severity: 'error', summary: 'No username provided', detail: 'Please provide a username', life: 3000 })
                 return;
             }
 
             if (!mail || mail.value < 1){
-                toast.add({ severity: 'error', summary: 'No e-mail provided', detail: 'Please provde an e-mail address', life: 3000 })
+                toast.add({ severity: 'error', summary: 'No e-mail provided', detail: 'Please provide an e-mail address', life: 3000 })
                 return;
             }
 

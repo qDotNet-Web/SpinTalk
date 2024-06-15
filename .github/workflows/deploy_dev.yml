@@ -1,0 +1,73 @@
+name: Deploy to Test Server
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Setup SSH for server
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan 45.138.48.208 >> ~/.ssh/known_hosts
+
+      - name: Setup SSH for GitHub
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.GH_DEPLOY_KEY }}" | tr -d '\r' | tee ~/.ssh/actions_ssh
+          chmod 600 ~/.ssh/actions_ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Verify SSH Key
+        run: |
+          cat ~/.ssh/actions_ssh
+
+      - name: Deploy to Test Server
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa root@45.138.48.208 << 'EOF'
+            set -e
+            
+            # Ensure the SSH key for GitHub is set up
+            mkdir -p ~/.ssh
+            echo "${{ secrets.GH_DEPLOY_KEY }}" | tr -d '\r' > ~/.ssh/actions_ssh
+            chmod 600 ~/.ssh/actions_ssh
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+            # Clone or pull the latest repository
+            if [ ! -d "/home/spintalk/.git" ]; then
+              echo "Cleaning up the directory..."
+              rm -rf /home/spintalk
+              echo "Cloning the repository..."
+              git clone git@github.com:qDotNet-Web/SpinTalk.git /home/spintalk
+            fi
+            cd /home/spintalk
+            git stash
+            git remote set-url origin git@github.com:qDotNet-Web/SpinTalk.git
+            git config --global core.sshCommand "ssh -i ~/.ssh/actions_ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+            git config pull.rebase false
+            git pull origin dev
+
+            # Build and push Docker images to local registry
+            docker build -t localhost:5000/spintalk_backend:latest ./backend
+            docker build -t localhost:5000/spintalk_frontend:latest ./frontend
+            docker push localhost:5000/spintalk_backend:latest
+            docker push localhost:5000/spintalk_frontend:latest
+
+            # Create Docker overlay network if it doesn't exist
+            docker network create --driver overlay spintalk_overlay || true
+
+            # Deploy the stack
+            docker stack deploy -c docker-compose.yml spintalk_stack
+          EOF
