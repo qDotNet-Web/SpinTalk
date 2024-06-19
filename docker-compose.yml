@@ -3,8 +3,10 @@ services:
     # image: 127.0.0.1:5000/spintalk_backend:latest
     build: ./backend
     restart: unless-stopped
-    expose:
-      - "8000"
+    ports:
+        - "8000:8000"
+    #expose:
+      #- "8000"
     depends_on:
       - mongo
     labels:
@@ -15,6 +17,13 @@ services:
         - "traefik.http.services.st_backend.loadbalancer.server.port=8000"
     environment:
         - MONGODB_URL=mongodb://admin:password@mongo:27017/ddf_db?authSource=admin
+        - MAIL_USERNAME=spintalk@qdotnet.de
+        - MAIL_PASSWORD=35,},ROstoR
+        - MAIL_SERVER=mail.skycentral.de
+        - MAIL_PORT=587
+        - MAIL_STARTTLS=true
+        - MAIL_SSL_TLS=false
+        - MAIL_FROM=spintalk@qdotnet.de
         - SECRET_KEY=secret_key
     networks:
       - spintalk
@@ -53,7 +62,7 @@ volumes:
     #external: true
 
 networks:
-    spintalk_overlay:
-        driver: overlay
+    #spintalk_overlay:
+        #driver: overlay
     spintalk:
         driver: bridge

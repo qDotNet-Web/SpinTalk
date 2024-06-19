@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends
+from fastapi.applications import LifespanOn
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from beanie import init_beanie
@@ -19,22 +20,14 @@ async def lifespan(app: FastAPI):
     )
     yield
 
-app = FastAPI(
-    version="0.0.1",
-    lifespan=lifespan,
-    docs_url="/docs",
-    redoc_url="/redoc",
-    openapi_url="/openapi.json",
-)
+app = FastAPI()
 
-"""origins = [
+origins = [
     "https://spintalk.net",
     "http://localhost",
     "https://localhost",
     "http://localhost:80",
-]"""
-
-origins = ['*']
+]
 
 app.add_middleware(
     CORSMiddleware,
@@ -75,13 +68,13 @@ async def authenticated_route(user: User = Depends(current_active_user)):
     return user
 
 
-@app.on_event("startup")
+@app.on_event(LifespanOn.startup)
 async def startup_event():
     await db_manager.initialize()
     print("Database initialized")
 
 
-@app.on_event("shutdown")
+@app.on_event(LifespanOn.shutdown)
 def shutdown_event():
     db_manager.close()
 
