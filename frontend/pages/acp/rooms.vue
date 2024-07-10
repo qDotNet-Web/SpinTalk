@@ -5,9 +5,9 @@
 
         <DataTable :value="filteredRooms" :paginator="true" :rows="5" :rowsPerPageOptions="[5,10,20]" :emptyMessage="emptyMessage">
             <Column field="id" header="Room ID" sortable></Column>
-            <Column field="user_one_id" header="User One"></Column>
+            <Column field="user_one_id" header="User One ID"></Column>
             <Column field="user_one" header="User One"></Column>
-            <Column field="user_two_id" header="User Two"></Column>
+            <Column field="user_two_id" header="User Two ID"></Column>
             <Column field="user_two" header="User Two"></Column>
             <Column field="actions" header="Actions">    
               <template #body="slotProps">
