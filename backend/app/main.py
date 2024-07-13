@@ -1,3 +1,7 @@
+from contextlib import asynccontextmanager
+from beanie import init_beanie
+from fastapi import Depends, FastAPI
+
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from beanie import init_beanie
@@ -6,7 +10,18 @@ from .accounts.accounts_schema import UserCreate, UserUpdate, UserRead
 from .accounts.accounts_manager import fastapi_users, auth_backend, current_active_user
 from .core.database import db_manager
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await init_beanie(
+        database=accounts_db,
+        document_models=[
+            User,
+        ],
+    )
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 origins = [
     "https://spintalk.net",
@@ -55,11 +70,6 @@ async def authenticated_route(user: User = Depends(current_active_user)):
 @app.on_event("startup")
 async def startup_event():
     await db_manager.initialize()
-    await init_beanie(
-        database=accounts_db,
-        document_models=[User],
-    )
-    print("Database initialized")
 
 
 @app.on_event("shutdown")
