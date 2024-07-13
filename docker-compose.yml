@@ -41,21 +41,15 @@ services:
     networks:
         - spintalk
 
-  #frontend:
-    # image: 127.0.0.1:5000/spintalk_frontend:latest
-    #build: ./frontend
-    #restart: unless-stopped
-    #depends_on:
-      #- backend
-    #labels:
-        #- "traefik.enable=true"
-        #- "traefik.http.routers.st_frontend.rule=Host(`frontend.localhost`)"
-        #- "traefik.http.routers.st_frontend.entrypoints=https"
-        #- "traefik.http.routers.st_frontend.tls=true"
-        #- "traefik.http.services.st_frontend.loadbalancer.server.port=80"
-    #networks:
-      #- spintalk_overlay
-      #- spintalk
+  frontend:
+    image: 127.0.0.1:5000/spintalk_frontend:latest
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      # - spintalk_overlay
+      - spintalk
 
 volumes:
   spintalk_database:
