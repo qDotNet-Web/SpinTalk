@@ -7,6 +7,7 @@ class Database:
     accounts_db = None
     reports_db = None
     chats_db = None
+    bans_db = None
 
     @classmethod
     async def initialize(cls):

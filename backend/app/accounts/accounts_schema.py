@@ -34,4 +34,4 @@ class UserUpdate(BaseUserUpdate):
 
 class UserCreate(BaseUserCreate):
     username: str
-    role: str = None
+    role: str = "user"
