@@ -21,6 +21,9 @@ FROM base AS prerelease
 COPY --from=install /temp/dev/node_modules node_modules
 COPY . .
 
+# Change the owner and permissions of the /usr/src/app directory
+RUN chown -R bun:bun /usr/src/app && chmod -R 755 /usr/src/app
+
 # [optional] tests & build
 ENV NODE_ENV=production
 RUN bun test
