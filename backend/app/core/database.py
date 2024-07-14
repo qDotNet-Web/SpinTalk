@@ -17,11 +17,6 @@ class Database:
         """
         cls.client = AsyncIOMotorClient(settings.MONGODB_URL)
 
-        """cls.accounts_db = cls.client[settings.MONGODB_DB_ACCOUNTS]
-        if "accounts" not in await cls.accounts_db.list_collection_names():
-            await cls.accounts_db.create_collection("accounts")
-            print("Created accounts collection")"""
-
         cls.reports_db = cls.client[settings.MONGODB_DB_REPORTS]
         if "reports" not in await cls.reports_db.list_collection_names():
             await cls.reports_db.create_collection("Reports")
@@ -106,4 +101,3 @@ db_manager = Database()
 reports_db = db_manager.reports_db
 chats_db = db_manager.chats_db
 bans_db = db_manager.bans_db
-

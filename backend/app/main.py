@@ -1,6 +1,4 @@
 from contextlib import asynccontextmanager
-from beanie import init_beanie
-from fastapi import Depends, FastAPI
 
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,6 +7,7 @@ from .accounts.accounts_db import User, accounts_db
 from .accounts.accounts_schema import UserCreate, UserUpdate, UserRead
 from .accounts.accounts_manager import fastapi_users, auth_backend, current_active_user
 from .core.database import db_manager
+from .bans.bans_routes import bans_router
 
 
 @asynccontextmanager
@@ -36,29 +35,40 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+"""
+Routers for FastAPI Users Routes
+"""
 app.include_router(
-    fastapi_users.get_auth_router(auth_backend), prefix="/auth/jwt", tags=["auth"]
+    fastapi_users.get_auth_router(auth_backend), prefix="/api/v1/auth/jwt", tags=["auth"]
 )
 app.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate),
-    prefix="/auth",
+    prefix="/api/v1/auth",
     tags=["auth"],
 )
 app.include_router(
     fastapi_users.get_reset_password_router(),
-    prefix="/auth",
+    prefix="/api/v1/auth",
     tags=["auth"],
 )
 app.include_router(
     fastapi_users.get_verify_router(UserRead),
-    prefix="/auth",
+    prefix="/api/v1/auth",
     tags=["auth"],
 )
 app.include_router(
     fastapi_users.get_users_router(UserRead, UserUpdate),
-    prefix="/users",
+    prefix="/api/v1/users",
     tags=["users"],
+)
+
+"""
+Router for Bans
+"""
+app.include_router(
+    bans_router.router,
+    prefix="/api/v1/bans",
+    tags=["bans"]
 )
 
 
