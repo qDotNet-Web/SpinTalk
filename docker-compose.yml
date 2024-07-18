@@ -42,9 +42,11 @@ services:
         - spintalk
 
   frontend:
-    image: 127.0.0.1:5000/spintalk_frontend:latest
+    #image: 127.0.0.1:5000/spintalk_frontend:latest
     build: ./frontend
     restart: unless-stopped
+    ports:
+      - "3000:3000"
     depends_on:
       - backend
     networks:

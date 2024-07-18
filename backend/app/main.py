@@ -65,11 +65,11 @@ app.include_router(
 """
 Router for Bans
 """
-app.include_router(
+"""app.include_router(
     bans_router.router,
     prefix="/api/v1/bans",
     tags=["bans"]
-)
+)"""
 
 
 @app.get("/authenticated-route")
