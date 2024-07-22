@@ -1,6 +1,6 @@
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
-FROM oven/bun:1 as base
+FROM oven/bun:latest as base
 WORKDIR /usr/src/app
 
 # install dependencies into temp directory
@@ -31,6 +31,7 @@ FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app/index.ts .
 COPY --from=prerelease /usr/src/app/package.json .
+COPY --chown=bun:bun --from=prerelease /usr/src/app /usr/src/app
 
 # run the app
 USER bun
