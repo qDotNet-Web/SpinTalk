@@ -4,7 +4,7 @@
         <Menubar :model="items">
             <template #start>
                 <div class="flex align-items-center gap-2" style="display: flex; padding-right: .2rem;">
-                    <img src="/img/logo_spintalk.png" style="width: 40px;"/>
+                    <img src="/img/logo_spintalk.png" style="width: 2.5vw;"/>
                 </div>
             </template>
             <template #item="{ item, props, hasSubmenu, root }">
@@ -21,8 +21,8 @@
             </template>
             <template #end>
                 <div class="flex align-items-center gap-2" style="display: flex; gap: 0.4rem">
-                    <InputText placeholder="Search" type="text" class="w-8rem sm:w-auto" />
-                    <Avatar image="/img/testavatar.png" shape="circle" />
+                    <!-- <InputText placeholder="Search" type="text" class="w-8rem sm:w-auto" /> -->
+                    <Avatar style="width: 2.5vw; height: auto;" image="/img/testavatar.png" shape="circle" />
                 </div>
             </template>
         </Menubar>
@@ -53,15 +53,10 @@ const items = ref([
         }
     },
     {
-        label: 'Chat',
-        icon: 'pi pi-comments',
-        badge: 5
-    },
-    {
         label: 'About',
         icon: 'pi pi-info-circle',
         command: () => {
-            router.push('/about');
+            router.push('/tac');
         }
     }
 ]);

@@ -10,14 +10,17 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "nuxt": "^3.11.2",
+    "@primevue/themes": "^4.0.4",
+    "add": "^2.0.6",
+    "module": "^1.2.5",
+    "nuxi": "^3.12.0",
+    "nuxt": "^3.12.4",
     "primeicons": "^7.0.0",
-    "primevue": "^3.52.0",
-    "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "primevue": "^4.0.4",
+    "usebootstrap": "^3.5.19",
+    "vue": "latest"
   },
   "devDependencies": {
-    "nuxt-primevue": "^0.3.1",
-    "usebootstrap": "^3.5.7"
+    "@primevue/nuxt-module": "^4.0.4"
   }
 }

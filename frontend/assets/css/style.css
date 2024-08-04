@@ -1,9 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root{
     --primary-color: #08c477;
     --main-text-color: rgb(218, 216, 216);
     --main-modal-bg: #18181b;
     --main-bg-color: #121212;
     --admin-color: red;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 400;
 }
 
 .main-app{
@@ -16,7 +27,18 @@
 
 .main-logo{
     padding-top: 3rem;
+    height: auto;
     width: 250px;
+}
+
+.main-logo img{
+    width: 100%;
+    height: 100%;
+}
+
+.terms{
+    width: 90%;
+    text-align: left;
 }
 
 .p-terms{
@@ -43,12 +65,6 @@
 
 .is-primary-color{
     color: var(--primary-color);
-}
-
-.video-chatBox {
-    border-radius: 12px;
-    border: 1px solid var(--primary-color);
-    width: 100%;
 }
 
 /*Nuxt Transitions*/
@@ -111,4 +127,33 @@
 
 .bg-chat-admin{
     background-color: var(--admin-color);
+}
+
+::-webkit-scrollbar {
+    width: 12px; /* Breite der vertikalen Scrollbar */
+    height: 12px; /* Höhe der horizontalen Scrollbar */
+}
+
+/* Track (Hintergrund der Scrollbar) */
+::-webkit-scrollbar-track {
+    background: transparent; /* Kein Hintergrund */
+    border-radius: 10px; /* Abgerundete Ecken */
+}
+
+/* Handle (Teil, den man bewegt) */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(78, 78, 78); /* Farbe und Transparenz des Handles */
+    border-radius: 10px; /* Abgerundete Ecken */
+    border: 2px solid transparent; /* Transparenter Rand, um den Handle kleiner zu machen */
+    background-clip: padding-box; /* Verhindert, dass der Hintergrund den Rand überlappt */
+}
+
+/* Optional: Hover-Effekt für den Handle */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(78, 78, 78);
+}
+
+/* Optional: Aktiver Zustand des Handles */
+::-webkit-scrollbar-thumb:active {
+    background-color: rgb(71, 71, 71); /* Noch dunklere Farbe, wenn aktiv */
 }
