@@ -16,7 +16,7 @@ services:
         - "traefik.http.routers.st_backend.tls=true"
         - "traefik.http.services.st_backend.loadbalancer.server.port=8000"
     environment:
-        - MONGODB_URL=mongodb://admin:password@mongo:27017/ddf_db?authSource=admin
+        - MONGODB_URL=mongodb://admin:password@mongo:27017/spintalk_db?authSource=admin
         - MAIL_USERNAME=spintalk@qdotnet.de
         - MAIL_PASSWORD=35,},ROstoR
         - MAIL_SERVER=mail.skycentral.de
