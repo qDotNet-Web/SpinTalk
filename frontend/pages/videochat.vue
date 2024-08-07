@@ -30,6 +30,7 @@
 
 <script>
 export default {
+    middleware: 'auth',
     data() {
         return {
             mediaStream: ref(null),
@@ -40,7 +41,8 @@ export default {
         }
     },
     async beforeRouteLeave(to, from, next) {
-        this.stopVideos().then(() => next());
+        this.stopVideos();
+        next();
         
     },
     mounted() {

@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@primevue/nuxt-module',
-],
+  ],
 primevue: {
     usePrimeVue: true,
     autoImport: true,

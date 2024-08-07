@@ -41,17 +41,17 @@ services:
     networks:
         - spintalk
 
-  frontend:
-    #image: 127.0.0.1:5000/spintalk_frontend:latest
-    build: ./frontend
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
-    networks:
-      # - spintalk_overlay
-      - spintalk
+  # frontend:
+  #   #image: 127.0.0.1:5000/spintalk_frontend:latest
+  #   build: ./frontend
+  #   restart: unless-stopped
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     # - spintalk_overlay
+  #     - spintalk
 
 volumes:
   spintalk_database:

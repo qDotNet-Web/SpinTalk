@@ -25,11 +25,18 @@
                         <label for="ip_userName">Username</label>
                     </FloatLabel>
                 </div>
-                <div class="inline-flex flex-column gap-2 mb-1">
+                <div class="inline-flex flex-column gap-2 mb-3">
                     <FloatLabel class="ip_float">
                         <InputText v-tooltip.top="'Enter your mail'" id="ip_mail" name="ip_mail" v-model="ip_mail"
                             class="w-full ip_float bg-white-alpha-20" maxlength="35" />
                         <label for="ip_mail">E-Mail</label>
+                    </FloatLabel>
+                </div>
+                <div class="inline-flex flex-column gap-2 mb-1">
+                    <FloatLabel class="ip_float">
+                        <InputText v-tooltip.top="'Enter your password'" id="ip_password" name="ip_password"
+                            v-model="ip_password" class="w-full ip_float bg-white-alpha-20" maxlength="35" />
+                        <label for="ip_password">Password</label>
                     </FloatLabel>
                 </div>
                 <div class="flex-terms flex-column gap-2 mb-2">
@@ -40,7 +47,7 @@
                     <Button label="Cancel" @click="closeCallback" text
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
                         outlined></Button>
-                    <Button label="Start" @click="closeCallback, startVideo()" text
+                    <Button label="Start" @click="closeCallback, register()" text
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
                         outlined :disabled="!checkedTerms"></Button>
                 </div>
@@ -71,9 +78,9 @@
                 </div>
                 <div class="inline-flex flex-column gap-2 mb-3">
                     <FloatLabel class="ip_float">
-                        <InputText v-tooltip.top="'Enter your username'" id="ip_lg_username" name="ip_lg_username"
-                            v-model="ip_lg_username" class="w-full ip_float bg-white-alpha-20" maxlength="35" autofocus />
-                        <label for="ip_lg_username">Username</label>
+                        <InputText v-tooltip.top="'Enter your E-Mail'" id="ip_lg_email" name="ip_lg_email"
+                            v-model="ip_lg_email" class="w-full ip_float bg-white-alpha-20" maxlength="35" autofocus />
+                        <label for="ip_lg_email">E-Mail</label>
                     </FloatLabel>
                 </div>
                 <div class="inline-flex flex-column gap-2 mb-1">
@@ -87,7 +94,7 @@
                     <Button label="Cancel" @click="closeCallback" text
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
                         outlined></Button>
-                    <Button label="Login" @click="closeCallback" text
+                    <Button label="Login" @click="closeCallback(); login();" text
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
                         outlined></Button>
                 </div>
@@ -101,46 +108,91 @@
 </template>
 
 <script>
-
+import { registerAccount, loginAccount } from '~/communication/accounts';
 
 
 export default {
     methods: {
         
     },
-    data() { },
+    data() { return {} },
     mounted() { },
     setup() {
         const router = useRouter()
         const toast = useToast()
         const register_visible = ref(false)
+
         const ip_userName = ref(null);
         const ip_mail = ref(null);
+        const ip_password = ref(null);
+
         const ip_type = ref(null);
         const checkedTerms = ref(false);
 
         const login_visible = ref(false);
-        const ip_lg_username = ref(null);
+        const ip_lg_email = ref(null);
         const ip_lg_password = ref(null);
         
 
-        async function startVideo() {
+        async function register() {
             let userName = ip_userName.value;
             let mail = ip_mail.value;
-            if (!userName || userName.value < 1){
+            let password = ip_password.value;
+
+            if (!userName){
                 toast.add({ severity: 'error', summary: 'No username provided', detail: 'Please provide a username', life: 3000 })
                 return;
             }
 
-            if (!mail || mail.value < 1){
+            if (!mail){
                 toast.add({ severity: 'error', summary: 'No e-mail provided', detail: 'Please provide an e-mail address', life: 3000 })
                 return;
             }
 
-            router.push('/videochat')
+            if (!password){
+                toast.add({ severity: 'error', summary: 'No password provided', detail: 'Please provide a password', life: 3000 })
+                return;
+            }
+            // console.log(ip_userName.value, ip_mail.value, ip_password.value)
+            registerAccount(ip_mail.value, ip_userName.value, ip_password.value).then((res) => {
+                if (res.status === 200){
+                    toast.add({ severity: 'success', summary: 'Account created', detail: 'You can now login', life: 3000 })
+                } else {
+                    toast.add({ severity: 'error', summary: 'Account creation failed', detail: 'Please try again', life: 3000 })
+                }
+            })
+            
+
+
+            // router.push('/videochat')
         }
 
-        return {startVideo, register_visible, ip_userName, ip_mail, ip_type, checkedTerms, login_visible, ip_lg_username, ip_lg_password}
+        async function login(){
+            let email = ip_lg_email.value;
+            let password = ip_lg_password.value;
+            if (!email){
+                toast.add({ severity: 'error', summary: 'No username provided', detail: 'Please provide a username', life: 3000 })
+                return;
+            }
+
+            if (!password){
+                toast.add({ severity: 'error', summary: 'No password provided', detail: 'Please provide a password', life: 3000 })
+                return;
+            }
+
+            loginAccount(ip_lg_email.value, ip_lg_password.value).then((token) => {
+                if (token) {
+                    router.push('/videochat')
+                    toast.add({ severity: 'success', summary: 'Login successful', detail: 'You are now logged in', life: 3000 })
+                } else {
+                    toast.add({ severity: 'error', summary: 'Login failed', detail: 'Please try again', life: 3000 })
+                }
+            })
+
+            // router.push('/videochat')
+        }
+
+        return {register, login, register_visible, ip_userName, ip_mail, ip_password, ip_type, checkedTerms, login_visible, ip_lg_email, ip_lg_password}
     },
 }
 </script>

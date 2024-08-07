@@ -24,7 +24,8 @@ app = FastAPI(lifespan=lifespan)
 
 origins = [
     "https://spintalk.net",
-    "http://localhost"
+    "http://localhost",
+    "http://localhost:3000",
 ]
 
 app.add_middleware(
