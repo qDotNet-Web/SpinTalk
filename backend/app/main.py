@@ -62,6 +62,12 @@ app.include_router(
     tags=["users"],
 )
 
+
+@app.get("/api/v1/auth/validate-token")
+async def validate_token(user: User = Depends(current_active_user)):
+    return {"status": "valid"}
+
+
 """
 Router for Bans
 """
@@ -70,12 +76,6 @@ Router for Bans
     prefix="/api/v1/bans",
     tags=["bans"]
 )"""
-
-
-@app.get("/authenticated-route")
-async def authenticated_route(user: User = Depends(current_active_user)):
-    return user
-
 
 @app.on_event("startup")
 async def startup_event():
