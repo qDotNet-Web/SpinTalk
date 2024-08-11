@@ -15,6 +15,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Chart from 'primevue/chart';
+
+import '~/assets/css/primevue.css'
+import '~/assets/css/style.css'
 definePageMeta({
   layout: 'acp'
 })
