@@ -1,11 +1,13 @@
-from fastapi_users.schemas import BaseUser, BaseUserCreate, BaseUserUpdate
+from fastapi_users import schemas
 from typing import Optional
 from beanie import PydanticObjectId
+from pydantic import Field
+from datetime import datetime
 
 
-class UserRead(BaseUser[PydanticObjectId]):
-    username: str = None
-    status: Optional[bool] = None
+class UserRead(schemas.BaseUser[PydanticObjectId]):
+    username: Optional[str] = None
+    status: Optional[str] = None
     role: Optional[str] = None
     created_at: Optional[str] = None
     banned_until: Optional[str] = None
@@ -16,11 +18,10 @@ class UserRead(BaseUser[PydanticObjectId]):
     last_ip: Optional[str] = None
 
 
-class UserUpdate(BaseUserUpdate):
+class UserUpdate(schemas.BaseUserUpdate):
     username: str
-    status: Optional[bool] = None
+    status: Optional[str] = None
     role: Optional[str] = None
-    created_at: Optional[str] = None
     banned_until: Optional[str] = None
     banned_reason: Optional[str] = None
     banned_from: Optional[str] = None
@@ -32,5 +33,18 @@ class UserUpdate(BaseUserUpdate):
         from_attributes = True
 
 
-class UserCreate(BaseUserCreate):
+class UserRegistration(schemas.BaseUserCreate):
     username: str
+
+
+class UserCreate(schemas.BaseUserCreate):
+    status: str = "active"
+    role: str = "user"
+    created_at: datetime = Field(default_factory=datetime.now)
+    banned_until: Optional[str] = None
+    banned_reason: Optional[str] = None
+    banned_from: Optional[str] = None
+    last_updated: datetime = Field(default_factory=datetime.now)
+    last_login: Optional[str] = None
+    last_ip: Optional[str] = None
+

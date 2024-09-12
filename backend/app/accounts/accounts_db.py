@@ -2,6 +2,7 @@ import motor.motor_asyncio
 from beanie import Document, init_beanie
 from fastapi_users.db import BeanieBaseUser
 from fastapi_users_db_beanie import BeanieUserDatabase
+from typing import Optional
 
 from ..utils.settings import settings
 
@@ -14,13 +15,7 @@ accounts_db = client[settings.MONGODB_DB_ACCOUNTS]
 
 
 class User(BeanieBaseUser, Document):
-    # email: EmailStr
-    is_active: bool = True
-    is_superuser: bool = False
-    is_verified: bool = False
-
-    # class Settings:
-    #    collection = "users"
+    username: str
 
 
 async def get_user_db():

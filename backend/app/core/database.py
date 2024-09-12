@@ -101,3 +101,4 @@ db_manager = Database()
 reports_db = db_manager.reports_db
 chats_db = db_manager.chats_db
 bans_db = db_manager.bans_db
+accounts_db = db_manager.accounts_db

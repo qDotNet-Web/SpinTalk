@@ -4,10 +4,11 @@ from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from beanie import init_beanie
 from .accounts.accounts_db import User, accounts_db
-from .accounts.accounts_schema import UserCreate, UserUpdate, UserRead
+from .accounts.accounts_schema import UserCreate, UserUpdate, UserRead, UserRegistration
 from .accounts.accounts_manager import fastapi_users, auth_backend, current_active_user
 from .core.database import db_manager
 from .bans.bans_routes import bans_router
+from .users.user_routes import user_router
 
 
 @asynccontextmanager
@@ -43,7 +44,7 @@ app.include_router(
     fastapi_users.get_auth_router(auth_backend), prefix="/api/v1/auth/jwt", tags=["auth"]
 )
 app.include_router(
-    fastapi_users.get_register_router(UserRead, UserCreate),
+    fastapi_users.get_register_router(UserRead, UserRegistration),
     prefix="/api/v1/auth",
     tags=["auth"],
 )
@@ -63,9 +64,18 @@ app.include_router(
     tags=["users"],
 )
 
+"""
+Router for Users
+"""
+app.include_router(
+    user_router,
+    prefix="/api/v1/users",
+    tags=["users"]
+)
+
 
 @app.get("/api/v1/auth/validate-token")
-async def validate_token(user: User = Depends(current_active_user)):
+async def validate_token(user: User = Depends(current_active_user)) -> dict[str, str]:
     return {"status": "valid"}
 
 
@@ -77,6 +87,7 @@ Router for Bans
     prefix="/api/v1/bans",
     tags=["bans"]
 )"""
+
 
 @app.on_event("startup")
 async def startup_event():
