@@ -1,0 +1,18 @@
+Index: backend/app/main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from contextlib import asynccontextmanager\r\n\r\nfrom fastapi import FastAPI, Depends\r\nfrom fastapi.middleware.cors import CORSMiddleware\r\nfrom beanie import init_beanie\r\nfrom .accounts.accounts_db import User, accounts_db\r\nfrom .accounts.accounts_schema import UserCreate, UserUpdate, UserRead\r\nfrom .accounts.accounts_manager import fastapi_users, auth_backend, current_active_user\r\nfrom .core.database import db_manager\r\nfrom .bans.bans_routes import bans_router\r\n\r\n\r\n@asynccontextmanager\r\nasync def lifespan(app: FastAPI):\r\n    await init_beanie(\r\n        database=accounts_db,\r\n        document_models=[\r\n            User,\r\n        ],\r\n    )\r\n    yield\r\n\r\napp = FastAPI(lifespan=lifespan)\r\n\r\norigins = [\r\n    \"https://spintalk.net\",\r\n    \"http://localhost\"\r\n]\r\n\r\napp.add_middleware(\r\n    CORSMiddleware,\r\n    allow_origins=origins,\r\n    allow_credentials=True,\r\n    allow_methods=[\"*\"],\r\n    allow_headers=[\"*\"],\r\n)\r\n\r\n\"\"\"\r\nRouters for FastAPI Users Routes\r\n\"\"\"\r\napp.include_router(\r\n    fastapi_users.get_auth_router(auth_backend), prefix=\"/api/v1/auth/jwt\", tags=[\"auth\"]\r\n)\r\napp.include_router(\r\n    fastapi_users.get_register_router(UserRead, UserCreate),\r\n    prefix=\"/api/v1/auth\",\r\n    tags=[\"auth\"],\r\n)\r\napp.include_router(\r\n    fastapi_users.get_reset_password_router(),\r\n    prefix=\"/api/v1/auth\",\r\n    tags=[\"auth\"],\r\n)\r\napp.include_router(\r\n    fastapi_users.get_verify_router(UserRead),\r\n    prefix=\"/api/v1/auth\",\r\n    tags=[\"auth\"],\r\n)\r\napp.include_router(\r\n    fastapi_users.get_users_router(UserRead, UserUpdate),\r\n    prefix=\"/api/v1/users\",\r\n    tags=[\"users\"],\r\n)\r\n\r\n\r\n@app.get(\"/api/v1/auth/validate-token\")\r\nasync def validate_token(user: User = Depends(current_active_user)):\r\n    return {\"status\": \"valid\"}\r\n\r\n\r\n\"\"\"\r\nRouter for Bans\r\n\"\"\"\r\n\"\"\"app.include_router(\r\n    bans_router.router,\r\n    prefix=\"/api/v1/bans\",\r\n    tags=[\"bans\"]\r\n)\"\"\"\r\n\r\n@app.on_event(\"startup\")\r\nasync def startup_event():\r\n    await db_manager.initialize()\r\n\r\n\r\n@app.on_event(\"shutdown\")\r\ndef shutdown_event():\r\n    db_manager.close()\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/app/main.py b/backend/app/main.py
+--- a/backend/app/main.py	(revision 00c761f159b752fe2ba3c6de8782698a8058e5c0)
++++ b/backend/app/main.py	(date 1723408848591)
+@@ -77,6 +77,7 @@
+     tags=["bans"]
+ )"""
+ 
++
+ @app.on_event("startup")
+ async def startup_event():
+     await db_manager.initialize()

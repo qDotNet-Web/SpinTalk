@@ -1,0 +1,20 @@
+Index: frontend/package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"name\": \"nuxt-app\",\r\n  \"private\": true,\r\n  \"type\": \"module\",\r\n  \"scripts\": {\r\n    \"build\": \"nuxt build\",\r\n    \"dev\": \"nuxt dev\",\r\n    \"generate\": \"nuxt generate\",\r\n    \"preview\": \"nuxt preview\",\r\n    \"postinstall\": \"nuxt prepare\"\r\n  },\r\n  \"dependencies\": {\r\n    \"nuxt\": \"^3.11.2\",\r\n    \"primeicons\": \"^7.0.0\",\r\n    \"primevue\": \"^3.52.0\",\r\n    \"vue\": \"^3.4.27\",\r\n    \"vue-router\": \"^4.3.2\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"nuxt-primevue\": \"^0.3.1\",\r\n    \"usebootstrap\": \"^3.5.7\"\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/package.json b/frontend/package.json
+--- a/frontend/package.json	
++++ b/frontend/package.json	
+@@ -14,7 +14,8 @@
+     "primeicons": "^7.0.0",
+     "primevue": "^3.52.0",
+     "vue": "^3.4.27",
+-    "vue-router": "^4.3.2"
++    "vue-router": "^4.3.2",
++    "websocket": "^1.0.35"
+   },
+   "devDependencies": {
+     "nuxt-primevue": "^0.3.1",

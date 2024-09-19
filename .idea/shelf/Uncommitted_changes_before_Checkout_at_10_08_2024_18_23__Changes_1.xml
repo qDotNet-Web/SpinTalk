@@ -1,0 +1,9 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_10_08_2024_18_23_[Changes]1" date="1723307001589" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_08_2024_18_23_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 10.08.2024 18:23 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="frontend/bun.lockb" />
+    <option name="AFTER_PATH" value="frontend/bun.lockb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_08_2024_18_23_[Changes]1/bun.lockb" />
+  </binary>
+</changelist>
