@@ -5,7 +5,6 @@ WORKDIR /code
 COPY requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt && pip freeze
-RUN pip install fastapi uvicorn
 
 COPY app /code/app
 
